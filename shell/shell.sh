@@ -41,7 +41,7 @@ noticeTG(){
     BtPanelURL=`echo 14 | bt |grep http`
     username=`echo 14 | bt |grep username`
     password=`echo 14 | bt |grep password`
-    message_text="【纯净版系统安装完成通知】\n\n恭喜！您的系统已圆满安装完成，请查看！\n\n${hour}:${min}:${sec}
+    message_text="【LNMP系统安装完成通知】\n\n恭喜！您的系统已圆满安装完成，请查看！\n\n${hour}:${min}:${sec}
     $BtPanelURL
     $username
     $password"
