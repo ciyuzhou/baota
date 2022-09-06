@@ -1,5 +1,5 @@
 #基于Centos镜像
-FROM amd64/centos:7
+FROM centos:7
 
 #镜像作者信息
 MAINTAINER @fengqu
@@ -27,17 +27,6 @@ RUN ln -sfv /shell/run.sh /usr/bin/run-bt && chmod a+x /usr/bin/run-bt
 
 #开放端口
 EXPOSE 8888 80 443 3306 888 20 21 22
-
-#镜像信息
-LABEL org.label-schema.schema-version="1.0" \
-org.label-schema.name="Docker Bt Panel" \
-org.label-schema.vendor="@fengqu" \
-org.label-schema.license="GPLv2" \
-org.label-schema.build-date="20221001" \
-org.opencontainers.image.title="CentOS Base Image" \
-org.opencontainers.image.vendor="CentOS" \
-org.opencontainers.image.licenses="GPL-2.0-only" \
-org.opencontainers.image.created="2022-10-01 00:00:00+00:00"
 
 #启动命令
 CMD ["run-bt"]
