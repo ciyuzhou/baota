@@ -23,7 +23,7 @@ RUN yum -y update \
    && yes y | /bin/bash install.sh
 
 #建立软连接
-RUN ln -sfv /itxq/shell/run.sh /usr/bin/run-bt && chmod a+x /usr/bin/run-bt
+RUN ln -sfv /shell/run.sh /usr/bin/run-bt && chmod a+x /usr/bin/run-bt
 
 #开放端口
 EXPOSE 8888 80 443 3306 888 20 21 22
