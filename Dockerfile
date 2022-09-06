@@ -14,7 +14,7 @@ RUN mkdir -p /www/letsencrypt \
     && mkdir /www/wwwroot
     
 #更新系统 安装依赖 安装宝塔面板
-RUN yum -y update \
+RUN yum -y update && upgrade\
     && yum -y install wget \
     #&& wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh \
     && echo y | bash install.sh \
