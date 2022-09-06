@@ -14,12 +14,11 @@ RUN mkdir -p /www/letsencrypt \
     && mkdir /www/wwwroot
     
 #更新系统 安装依赖 安装宝塔面板
-RUN yum -y update && upgrade\
+RUN yum -y update \
     && yum -y install wget \
-    #&& wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh \
     && echo y | bash install.sh \
-    && python /set_default.py
-    #&& echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json
+    && python /set_default.py \
+    && echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json
 
 WORKDIR /www/wwwroot
 CMD /entrypoint.sh
