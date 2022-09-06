@@ -8,21 +8,17 @@ rm -rf /www/server/panel/data/admin_path.pl
 init_env(){
     echo "开始安装NGINX1.20.1"
     bash /www/server/panel/install/install_soft.sh 1 install nginx 1.20.1 &>/dev/null
-    c=$(date "+%s")
-    echo "nginx安装完成，耗时：$(($c-$b))s"
+    echo "nginx安装完成！"
     echo "开始安装php7.4"
     bash /www/server/panel/install/install_soft.sh 1 install php 7.4 &>/dev/null || echo 'Ignore Error' &>/dev/null
-    d=$(date "+%s")
-    echo "php安装完成，耗时：$(($d-$c))s"
+    echo "php安装完成！"
     echo "开始安装mysql mariadb_10.3"
     bash /www/server/panel/install/install_soft.sh 1 install mysql mariadb_10.3 &>/dev/null
-    e=$(date "+%s")
-    echo "mysql安装完成，耗时：$(($e-$d))s"    
+    echo "mysql安装完成！"    
     #echo "开始安装phpadmin4.9"
     #bash /www/server/panel/install/install_soft.sh 1 install phpmyadmin 4.9 &>/dev/null || echo 'Ignore Error' &>/dev/null
-    #f=$(date "+%s")
-    echo "phpadmin安装完成，耗时：$(($f-$e))s"
-    echo "所有软件已安装完毕"
+    echo "phpadmin安装完成！"
+    echo "所有软件已安装完毕！"
     #添加软件到首页
     #echo '["linuxsys", "webssh", "nginx", "php-7.3", "mysql", "phpmyadmin"]' > /www/server/panel/config/index.json
     echo '["linuxsys", "webssh", "nginx", "php-7.3", "mysql"]' > /www/server/panel/config/index.json
@@ -30,9 +26,8 @@ init_env(){
     for file in `ls /etc/init.d`
     do if [ -x /etc/init.d/${file} ];  then 
         /etc/init.d/$file restart
-    fi done
-    g=$(date "+%s")        
-    echo "重启各种服务组件完毕，耗时：$(($g-$f))s"
+    fi done     
+    echo "重启各种服务组件完毕！"
 }
 
 noticeTG(){
@@ -41,7 +36,7 @@ noticeTG(){
     BtPanelURL=`echo 14 | bt |grep http`
     username=`echo 14 | bt |grep username`
     password=`echo 14 | bt |grep password`
-    message_text="【LNMP系统安装完成通知】\n\n恭喜！您的系统已圆满安装完成，请查看！\n\n${hour}:${min}:${sec}
+    message_text="【LNMP系统安装完成通知】\n\n恭喜！您的系统已圆满安装完成，请查看！
     $BtPanelURL
     $username
     $password"
@@ -50,20 +45,7 @@ noticeTG(){
 }
 
 init_env
-totaltime=$(($g-$a))
-hour=$(( $totaltime/3600 ))
-min=$(( ($totaltime-${hour}*3600)/60 ))
-sec=$(( $totaltime-${hour}*3600-${min}*60 ))
-echo ${hour}:${min}:${sec}
 noticeTG 
 clear
-echo "=============安装概览================="
-echo "BT面板：$(($b-$a))s"
-echo "nginx:$(($c-$b))s"
-echo "php:$(($d-$c))s"
-echo "mysql:$(($e-$d))s"
-#echo "phpadmin:$(($f-$e))s"
-echo "Total总耗时:${hour}时:${min}分:${sec}秒"
-echo "====================================="
 #显示宝塔面板信息
 bt 14
