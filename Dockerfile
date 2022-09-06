@@ -21,8 +21,8 @@ RUN cd /home \
     && echo 'Port 63322' > /etc/ssh/sshd_config \
     #&& wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh \
     && echo y | bash install.sh \
-    && python /set_default.py
-    #&& echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json
+    && python /set_default.py \
+    #&& echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json \
     && yum clean all
 
 WORKDIR /www/wwwroot
