@@ -18,5 +18,5 @@ noticeTG(){
     #echo "$message_text"
     curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${chat_ID} -d text="${message_text}" > /dev/null
 }
-#发送Telegram机器人消息
+
 noticeTG
