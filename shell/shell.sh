@@ -19,4 +19,8 @@ noticeTG(){
     curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${chat_ID} -d text="${message_text}" > /dev/null
 }
 
+hour=$(( $totaltime/3600 ))
+min=$(( ($totaltime-${hour}*3600)/60 ))
+sec=$(( $totaltime-${hour}*3600-${min}*60 ))
+echo ${hour}:${min}:${sec}
 noticeTG
