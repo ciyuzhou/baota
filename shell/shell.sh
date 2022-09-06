@@ -11,16 +11,12 @@ noticeTG(){
     BtPanelURL=`echo 14 | bt |grep http`
     username=`echo 14 | bt |grep username`
     password=`echo 14 | bt |grep password`
-    message_text="【纯净版系统安装完成通知】恭喜！您的系统已圆满安装完成，请查看！${hour}:${min}:${sec}
+    message_text="【纯净版系统安装完成通知】恭喜！您的系统已圆满安装完成，请查看！
     $BtPanelURL
     $username
     $password"
     #echo "$message_text"
     curl -s -X POST https://api.telegram.org/bot${TOKEN}/sendMessage -d chat_id=${chat_ID} -d text="${message_text}" > /dev/null
 }
-
-hour=$(( $totaltime/3600 ))
-min=$(( ($totaltime-${hour}*3600)/60 ))
-sec=$(( $totaltime-${hour}*3600-${min}*60 ))
-echo ${hour}:${min}:${sec}
+#发送Telegram机器人消息
 noticeTG
