@@ -3,7 +3,6 @@ MAINTAINER @fengqu
 
 #设置entrypoint和letsencrypt映射到www文件夹下持久化
 COPY entrypoint.sh /entrypoint.sh
-COPY set_default.py /set_default.py
 
 RUN mkdir -p /www/letsencrypt \
     && ln -s /www/letsencrypt /etc/letsencrypt \
@@ -17,7 +16,6 @@ RUN mkdir -p /www/letsencrypt \
 RUN yum -y update \
     && yum -y install wget \
     && echo y | bash install.sh \
-    && python /set_default.py
 
 WORKDIR /www/wwwroot
 CMD /entrypoint.sh
