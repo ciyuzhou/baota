@@ -17,11 +17,11 @@ init_env(){
     echo "mysql安装完成！"    
     #echo "开始安装phpadmin4.9"
     #bash /www/server/panel/install/install_soft.sh 1 install phpmyadmin 4.9 &>/dev/null || echo 'Ignore Error' &>/dev/null
-    echo "phpadmin安装完成！"
+    #echo "phpadmin安装完成！"
     echo "所有软件已安装完毕！"
     #添加软件到首页
-    #echo '["linuxsys", "webssh", "nginx", "php-7.3", "mysql", "phpmyadmin"]' > /www/server/panel/config/index.json
-    echo '["linuxsys", "webssh", "nginx", "php-7.3", "mysql"]' > /www/server/panel/config/index.json
+    #echo '["linuxsys", "webssh", "nginx", "php-7.4", "mysql", "phpmyadmin"]' > /www/server/panel/config/index.json
+    echo '["linuxsys", "webssh", "nginx", "php-7.4", "mysql"]' > /www/server/panel/config/index.json
     echo "正在重启所有服务器组件"
     for file in `ls /etc/init.d`
     do if [ -x /etc/init.d/${file} ];  then 
