@@ -19,8 +19,7 @@ RUN yum -y update \
     #&& wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh \
     && echo y | bash install.sh \
     && python /set_default.py \
-    #&& echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json \
-    && yum clean all
+    #&& echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json
 
 WORKDIR /www/wwwroot
 CMD /entrypoint.sh
