@@ -1,5 +1,5 @@
 #基于Centos镜像
-FROM centos:7
+FROM amd64/centos:7
 
 #镜像作者信息
 MAINTAINER @fengqu
