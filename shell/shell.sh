@@ -3,7 +3,7 @@
 export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 #删除随机的安全入口
-rm -rf /www/server/panel/data/admin_path.pl
+#rm -rf /www/server/panel/data/admin_path.pl
 
 noticeTG(){
     TOKEN=5368544643:AAFANegpqLEveFnwVANjFGVev1I-EvsViaA #TG机器人API—Token口令
