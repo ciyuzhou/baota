@@ -17,8 +17,7 @@ RUN mkdir -p /www/letsencrypt \
 RUN yum -y update \
     && yum -y install wget \
     && echo y | bash install.sh \
-    && python /set_default.py \
-    && echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json
+    && python /set_default.py
 
 WORKDIR /www/wwwroot
 CMD /entrypoint.sh
