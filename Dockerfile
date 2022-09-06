@@ -20,7 +20,7 @@ RUN yum -y update \
 && yum install -y wget \
 && wget -O install.sh "${BT_PANEL_SCRIPT_URL}" \
    && chmod 777 install.sh \
-   && yes y | /bin/bash install.sh
+   && yes y | /bin/bash install.sh \
    && yum clean all
 
 #建立软连接
