@@ -49,4 +49,4 @@ jobs:
 #Docker镜像推送
           push: true
 #标签
-          tags: sonyiii/baota:clear
+          tags: sonyiii/baota:lnmp
