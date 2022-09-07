@@ -13,7 +13,7 @@ ENV BT_PANEL_SCRIPT_URL=${BT_PANEL_SCRIPT_URL}
 RUN yum install -y wget
 
 #安装宝塔面板
-RUN wget "http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh" && yes y | /bin/bash install.sh
+RUN wget "http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh" && yes y | bash
 
 #开放端口
 EXPOSE 8888 80 443 3306 888 20 21 22
