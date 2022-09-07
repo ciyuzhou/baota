@@ -1,8 +1,6 @@
 FROM centos:7
 MAINTAINER @fengqu
 
-COPY install.sh /install.sh
-
 #设置时区为上海
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' > /etc/timezone
