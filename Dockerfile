@@ -17,7 +17,6 @@ COPY ./shell /shell
 #安装必要的扩展包
 RUN yum update -y \
     && yum install -y git \
-    && yum install -y expect \
     && yum install -y crontabs \
     && yum install -y sudo \
     && yum install -y wget \
