@@ -10,8 +10,7 @@ ARG BT_PANEL_SCRIPT_URL="http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/instal
 ENV BT_PANEL_SCRIPT_URL=${BT_PANEL_SCRIPT_URL}
 
 #安装必要的扩展包
-RUN yum install -y wget \
-    && yum clean all
+RUN yum install -y wget python3
 
 #安装宝塔面板
 RUN wget -O install.sh "${BT_PANEL_SCRIPT_URL}" \
