@@ -1,4 +1,4 @@
-FROM centos:7
+FROM amd64/centos:7
 MAINTAINER @fengqu
 
 #设置时区为上海
