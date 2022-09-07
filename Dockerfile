@@ -1,36 +1,31 @@
-#基于Centos镜像
-FROM amd64/centos:7
-
+FROM centos:7
 MAINTAINER @fengqu
 
-#设置时区为上海
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN echo 'Asia/Shanghai' > /etc/timezone
+#设置entrypoint和letsencrypt映射到www文件夹下持久化
+COPY entrypoint.sh /entrypoint.sh
+COPY set_default.py /set_default.py
 
-#宝塔面板下载地址
-ARG BT_PANEL_SCRIPT_URL="http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh"
-ENV BT_PANEL_SCRIPT_URL=${BT_PANEL_SCRIPT_URL}
-
-#添加shell脚本
-COPY ./shell /shell
-
-#安装必要的扩展包
-RUN yum update -y \
-    && yum install -y git \
-    && yum install -y crontabs \
-    && yum install -y sudo \
-    && yum install -y wget \
+RUN mkdir -p /www/letsencrypt \
+    && ln -s /www/letsencrypt /etc/letsencrypt \
+    && rm -f /etc/init.d \
+    && mkdir /www/init.d \
+    && ln -s /www/init.d /etc/init.d \
+    && chmod +x /entrypoint.sh \
+    && mkdir /www/wwwroot
+    
+#更新系统 安装依赖 安装宝塔面板
+RUN cd /home \
+    && yum -y update \
+    && yum -y install wget openssh-server \
+    && echo 'Port 63322' > /etc/ssh/sshd_config \
+    && wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh \
+    && echo y | bash install.sh \
+    && python /set_default.py \
+    && echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json \
     && yum clean all
 
-#安装宝塔面板
-RUN wget -O install.sh ${BT_PANEL_SCRIPT_URL}
-RUN yes y | /bin/bash install.sh
+WORKDIR /www/wwwroot
+CMD /entrypoint.sh
+EXPOSE 8888 888 21 20 443 80
 
-#建立软连接
-RUN ln -sfv /shell/run.sh /usr/bin/run-bt && chmod a+x /usr/bin/run-bt
-
-#开放端口
-EXPOSE 8888 80 443 3306 888 20 21 22
-
-#启动命令
-CMD ["run-bt"]
+HEALTHCHECK --interval=5s --timeout=3s CMD curl -fs http://localhost:8888/ && curl -fs http://localhost/ || exit 1 
