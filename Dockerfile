@@ -10,4 +10,4 @@ RUN bash /www/server/panel/install/install_soft.sh 0 install mysql mariadb_10.3
 
 RUN echo '["linuxsys", "webssh", "nginx", "php-7.4", "mysql"]' > /www/server/panel/config/index.json
 
-VOLUME ["/www","/www/wwwroot"]
+VOLUME ["/www","/www/wwwroot"] 
