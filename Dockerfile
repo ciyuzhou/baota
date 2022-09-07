@@ -1,24 +1,35 @@
 FROM centos:7
 MAINTAINER @fengqu
 
-#设置entrypoint和letsencrypt映射到www文件夹下持久化
-COPY entrypoint.sh /entrypoint.sh
+#设置时区为上海
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN echo 'Asia/Shanghai' > /etc/timezone
 
-RUN mkdir -p /www/letsencrypt \
-    && ln -s /www/letsencrypt /etc/letsencrypt \
-    && rm -f /etc/init.d \
-    && mkdir /www/init.d \
-    && ln -s /www/init.d /etc/init.d \
-    && chmod +x /entrypoint.sh \
-    && mkdir /www/wwwroot
-    
-#更新系统 安装依赖 安装宝塔面板
-RUN yum -y update \
-    && yum -y install wget \
-    && echo y | bash install.sh \
+#宝塔面板安装脚本下载地址：
+ARG BT_PANEL_SCRIPT_URL="http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh"
+ENV BT_PANEL_SCRIPT_URL=${BT_PANEL_SCRIPT_URL}
 
-WORKDIR /www/wwwroot
-CMD /entrypoint.sh
-EXPOSE 8888 888 21 20 443 80
+#安装必要的扩展包
+RUN yum install -y wget \
+    && yum clean all
 
-HEALTHCHECK --interval=5s --timeout=3s CMD curl -fs http://localhost:8888/ && curl -fs http://localhost/ || exit 1
+#安装宝塔面板
+RUN wget -O install.sh "${BT_PANEL_SCRIPT_URL}" \
+   && yes y | /bin/bash install.sh
+
+#镜像信息
+LABEL org.label-schema.schema-version="1.0" \
+org.label-schema.name="Docker Bt Panel" \
+org.label-schema.vendor="@fengqu" \
+org.label-schema.license="GPLv2" \
+org.label-schema.build-date="20221001" \
+org.opencontainers.image.title="CentOS Base Image" \
+org.opencontainers.image.vendor="CentOS" \
+org.opencontainers.image.licenses="GPL-2.0-only" \
+org.opencontainers.image.created="2022-10-01 00:00:00+00:00"
+
+#开放端口
+EXPOSE 8888 80 443 3306 888 20 21 22
+
+#启动命令
+CMD ["/etc/init.d/bt restart"]
