@@ -312,7 +312,7 @@ Install_Bt(){
 		sleep 1
 	fi
 
-	wget -O panel.zip ${bt_panel_file_url} -T 10
+	wget -O panel.zip "${bt_panel_file_url}" -T 10
 	wget -O /etc/init.d/bt ${download_Url}/install/src/bt6.init -T 10
 	wget -O /www/server/panel/install/public.sh ${download_Url}/install/public.sh -T 10
 
