@@ -28,7 +28,7 @@ RUN wget -O install.sh ${BT_PANEL_SCRIPT_URL}
 RUN yes y | /bin/bash install.sh
 
 #修改安全入口、面板密码 、面板用户名
-RUN echo "" > /www/server/panel/data/admin_path.pl \
+RUN rm -rf /www/server/panel/data/admin_path.pl \
     && echo "6688" > /www/server/panel/data/port.pl \
     && python /www/server/panel/tools.py panel admin \
     && expect /shell/expect.sh
