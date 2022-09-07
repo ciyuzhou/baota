@@ -18,4 +18,4 @@ RUN wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.
 EXPOSE 8888 80 443 3306 888 20 21 22
 
 #启动命令
-CMD ["/etc/init.d/bt restart"]
+CMD ["bt default"]
