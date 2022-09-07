@@ -6,8 +6,9 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' > /etc/timezone
 
 #更新系统、安装扩展包
-RUN yum -y update \
-    && yum -y install wget
+RUN cd /home \
+    && yum -y update \
+    && yum -y install wget openssh-server
 
 #安装宝塔面板
 RUN wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh \
