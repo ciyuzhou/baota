@@ -5,7 +5,7 @@ MAINTAINER @fengqu
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' > /etc/timezone
 
-#安装扩展包
+#更新系统、安装扩展包
 RUN yum -y update \
     && yum -y install wget
 
