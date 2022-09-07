@@ -1,4 +1,4 @@
-FROM sonyiii/baota:clear
+FROM pch18/baota:clear
 
 MAINTAINER @fengqu
 
