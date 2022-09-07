@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu:22.10
 MAINTAINER @fengqu
 
 #设置entrypoint和letsencrypt映射到www文件夹下持久化
