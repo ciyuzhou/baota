@@ -15,7 +15,7 @@ RUN yum install -y wget
 #安装宝塔面板
 #RUN wget -O install.sh "${BT_PANEL_SCRIPT_URL}" \
 #   && yes y | /bin/bash install.sh
-RUN yes y | /bin/bash install.sh
+RUN yum install -y install.sh
 
 #镜像信息
 LABEL org.label-schema.schema-version="1.0" \
