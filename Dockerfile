@@ -6,15 +6,16 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' > /etc/timezone
 
 #宝塔面板安装脚本下载地址：
-ARG BT_PANEL_SCRIPT_URL="http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh"
-ENV BT_PANEL_SCRIPT_URL=${BT_PANEL_SCRIPT_URL}
+#ARG BT_PANEL_SCRIPT_URL="http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh"
+#ENV BT_PANEL_SCRIPT_URL=${BT_PANEL_SCRIPT_URL}
 
-#安装必要的扩展包
+#安装扩展包
 RUN yum install -y wget
 
 #安装宝塔面板
-RUN wget -O install.sh "${BT_PANEL_SCRIPT_URL}" \
-   && yes y | /bin/bash install.sh
+#RUN wget -O install.sh "${BT_PANEL_SCRIPT_URL}" \
+#   && yes y | /bin/bash install.sh
+RUN yes y | /bin/bash install.sh
 
 #镜像信息
 LABEL org.label-schema.schema-version="1.0" \
