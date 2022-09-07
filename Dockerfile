@@ -1,6 +1,6 @@
 FROM sonyiii/baota:clear
 
-MAINTAINER @fengqu
+MAINTAINER fengqu
 
 RUN bash /www/server/panel/install/install_soft.sh 0 install nginx 1.
 RUN bash /www/server/panel/install/install_soft.sh 0 install php 7.4 || echo 'Ignore Error'
