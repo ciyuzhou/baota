@@ -1,4 +1,4 @@
-FROM ubuntu:22.10
+FROM amd64/centos:7
 MAINTAINER @fengqu
 
 #设置entrypoint和letsencrypt映射到www文件夹下持久化
@@ -15,14 +15,14 @@ RUN mkdir -p /www/letsencrypt \
     
 #更新系统 安装依赖 安装宝塔面板
 RUN cd /home \
-    && apt-get -y update \
-    && apt-get -y install wget openssh-server \
+    && yum -y update \
+    && yum -y install wget openssh-server \
     && echo 'Port 63322' > /etc/ssh/sshd_config \
     && wget -O install.sh http://pan.wangpan.tk/s/dqfdGB5Snnr7PZJ/download/install.sh \
     && echo y | bash install.sh \
     && python /set_default.py \
     && echo '["linuxsys", "webssh"]' > /www/server/panel/config/index.json \
-    && apt-get clean all
+    && yum clean all
 
 WORKDIR /www/wwwroot
 CMD /entrypoint.sh
