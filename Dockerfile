@@ -17,7 +17,6 @@ RUN mkdir -p /www/letsencrypt \
 RUN cd /home \
     && yum -y update \
     && yum -y install wget openssh-server \
-    && echo 'Port 63322' > /etc/ssh/sshd_config \
     && wget -O install.sh http://download.bt.cn/install/install_6.0.sh \
     && echo y | bash install.sh \
     && python /set_default.py \
