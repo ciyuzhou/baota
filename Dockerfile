@@ -1,11 +1,6 @@
 FROM amd64/centos:7
 MAINTAINER @fengqu
 
-RUN echo "Asia/Shanghai" > /etc/timezone
-ENV LANG C.UTF_8
-ENV LC_ALL C.UTF-8
-ENV LANGUAGE C.UTF-8
-
 #设置entrypoint和letsencrypt映射到www文件夹下持久化
 COPY entrypoint.sh /entrypoint.sh
 COPY set_default.py /set_default.py
