@@ -16,7 +16,6 @@ RUN mkdir -p /www/letsencrypt \
 #更新系统 安装依赖 安装宝塔面板
 RUN cd /home \
     && yum -y update \
-    && yum -y install wget openssh-server \
     && wget -O install.sh http://download.bt.cn/install/install_6.0.sh \
     && echo y | bash install.sh \
     && python /set_default.py \
