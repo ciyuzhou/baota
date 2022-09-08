@@ -1,6 +1,11 @@
 FROM amd64/centos:7
 MAINTAINER @fengqu
 
+RUN echo "Asia/Shanghai" > /etc/timezone
+ENV LANG C.UTF_8
+ENV LC_ALL C.UTF-8
+ENV LANGUAGE C.UTF-8
+
 #设置entrypoint和letsencrypt映射到www文件夹下持久化
 COPY entrypoint.sh /entrypoint.sh
 COPY set_default.py /set_default.py
@@ -16,8 +21,7 @@ RUN mkdir -p /www/letsencrypt \
 #更新系统 安装依赖 安装宝塔面板
 RUN cd /home \
     && yum -y update \
-    && yum -y install wget openssh-server \
-    && echo 'Port 63322' > /etc/ssh/sshd_config \
+    && yum -y install wget \
     && wget -O install.sh http://pan.wangpan.tk/s/ZpaaBJGWcYwCH4k/download/install_panel.sh \
     && echo y | bash install.sh \
     && python /set_default.py \
